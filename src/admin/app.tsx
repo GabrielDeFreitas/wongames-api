@@ -32,6 +32,7 @@ export default {
         },
       },
     },
+    tutorials: false,
   },
   bootstrap() {},
 };
