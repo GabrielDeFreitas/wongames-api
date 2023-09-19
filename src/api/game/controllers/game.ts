@@ -8,11 +8,18 @@ export default factories.createCoreController(
   "api::game.game",
   ({ strapi }) => ({
     async populate(ctx) {
-      console.log("RODANDO NO SERVIDOR");
+      //console.log("RODANDO NO SERVIDOR");
 
-      await strapi.service("api::game.game").populate(ctx.query);
+      const options = {
+        limit: 48,
+        order: "desc:trending",
+        ...ctx.query,
+      };
 
-      ctx.send("FINALIZADO NO CLIENT");
+      await strapi.service("api::game.game").populate(options);
+
+      //ctx.send("FINALIZADO NO CLIENT");
+      ctx.send("Finished populating games!");
     },
   })
 );
